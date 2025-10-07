@@ -1,9 +1,12 @@
 import { createClient } from '@supabase/supabase-js'
+import dotenv from 'dotenv'
 
-// Substitua estas variáveis pelas suas credenciais do Supabase
-// Você encontrará estas informações no painel do Supabase em Settings > API
-const supabaseUrl = 'SUA_URL_DO_SUPABASE'
-const supabaseKey = 'SUA_CHAVE_ANON_DO_SUPABASE'
+// Carrega as variáveis de ambiente
+dotenv.config()
+
+// Usa as variáveis de ambiente para as credenciais do Supabase
+const supabaseUrl = process.env.SUPABASE_URL || ''
+const supabaseKey = process.env.SUPABASE_KEY || ''
 
 // Cria o cliente do Supabase
 const supabase = createClient(supabaseUrl, supabaseKey)
