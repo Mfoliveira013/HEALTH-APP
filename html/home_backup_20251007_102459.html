@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Maurico</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="nav-left">
+            <button onclick="window.location.href='home.html'" class="health-button">
+                <h2>HEALTH</h2>
+            </button>
+        </div>
+        <nav class="nav-right">
+            <a href="perfil.html" class="nav-link"><i class="fas fa-user"></i> Perfil</a>
+            <a href="login.html" class="nav-link"><i class="fas fa-sign-out-alt"></i> Sair</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="dashboard">
+            <div class="resumo-diario">
+                <div class="card resumo">
+                    <h3>Resumo do Dia</h3>
+                    <div class="metricas">
+                        <div class="metrica">
+                            <i class="fas fa-tint"></i>
+                            <span>Total de Água:</span>
+                            <p><strong id="totalAgua">0</strong></p>
+                        </div>
+                        <div class="metrica">
+                            <i class="fas fa-fire"></i>
+                            <span>Total de Calorias:</span>
+                            <strong id="totalCalorias">0 calorias</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <section class="monitoramento" id="registro">
+                <!-- Seção Hidratação -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-tint"></i> Hidratação</h2>
+                    </div>
+                    <div class="card-body">
+                        <p>Registre sua ingestão de água:</p>
+                        <div class="input-group">
+                            <input type="number" id="agua" placeholder="Quantidade" min="0" step="0.1">
+                            <select id="unidadeAgua">
+                                <option value="ml">ml</option>
+                                <option value="litro">litro</option>
+                            </select>
+                        </div>
+                        <div class="action-group">
+                            <button onclick="registrarAgua()" class="btn-primary">
+                                <i class="fas fa-plus"></i> Registrar
+                            </button>
+                            <button onclick="mostrarRegistros('agua')" class="btn-secondary">
+                                <i class="fas fa-history"></i> Histórico
+                            </button>
+                        </div>
+                        <p id="resultadoAgua" class="resultado"></p>
+                    </div>
+                </div>
+
+                <!-- Seção Calorias -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-fire"></i> Calorias</h2>
+                    </div>
+                    <div class="card-body">
+                        <p>Registre suas calorias ingeridas:</p>
+                        <div class="input-group">
+                            <input type="number" id="calorias" placeholder="Quantidade de calorias" min="0">
+                        </div>
+                        <div class="action-group">
+                            <button onclick="registrarCalorias()" class="btn-primary">
+                                <i class="fas fa-plus"></i> Registrar
+                            </button>
+                            <button onclick="mostrarRegistros('calorias')" class="btn-secondary">
+                                <i class="fas fa-history"></i> Histórico
+                            </button>
+                        </div>
+                        <p id="resultadoCalorias" class="resultado"></p>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Modal para exibir registros -->
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="tituloModal">Registros</h2>
+                    <span class="close" onclick="fecharModal()">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <ul id="listaRegistros" class="registros-lista"></ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+
+
+
+<!-- Tabela Nutricional -->
+<div class="box" onclick="toggleTabelaNutricional()">
+    <h4><i class="fas fa-utensils"></i> Tabela Nutricional</h4>
+</div>
+<div class="tabela-nutricional" id="tabelaNutricional" style="display: none;">
+    <div class="card">
+        <div class="card-header">
+            <h3>Tabela Nutricional de Alimentos</h3>
+            <div class="search-container">
+                <input type="text" id="searchAlimento" placeholder="Buscar alimento..." onkeyup="filtrarAlimentos()">
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="nutricional-table">
+                <thead>
+                    <tr>
+                        <th>Alimento</th>
+                        <th>Porção (100g)</th>
+                        <th>Calorias</th>
+                        <th>Proteínas</th>
+                        <th>Carboidratos</th>
+                        <th>Gorduras</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaAlimentos">
+                    <!-- Os dados serão preenchidos via JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+    <!-- Calculadora IMC -->
+    <div class="card">
+        <div class="card-header">
+            <h2><i class="fas fa-calculator"></i> Calculadora IMC</h2>
+        </div>
+        <div class="card-body">
+            <button onclick="toggleImcCalculator()" class="btn-primary">
+                <i class="fas fa-calculator"></i> Abrir Calculadora
+            </button>
+            <div class="imc-calculator" id="imc-calculator" style="display: none;">
+                <form id="imcForm">
+                    <div class="input-group">
+                        <input type="number" id="pesoIMC" placeholder="Peso (kg)" step="0.1" required>
+                        <input type="number" id="alturaIMC" placeholder="Altura (Ex: 1.80)" step="0.01" required>
+                        <input type="number" id="idadeIMC" placeholder="Idade (anos)" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Calcular IMC</button>
+                </form>
+                <div class="imc-result" id="resultadoIMC"></div>
+                <p id="diagnosticoIMC"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/home.js"></script>
+    <script src="js/accessibility.js"></script>
+</body>
+</html>
+
+
+
+

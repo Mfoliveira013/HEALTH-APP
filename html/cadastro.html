@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Health App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/cadastro.css">
+</head>
+<body class="light-theme">
+    <div class="accessibility-bar">
+        <div class="accessibility-controls">
+            <button id="toggle-theme" class="btn-icon" aria-label="Alternar tema">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="font-controls">
+                <button id="decrease-font" class="btn-icon" aria-label="Diminuir fonte">A-</button>
+                <button id="reset-font" class="btn-icon" aria-label="Tamanho de fonte padrão">A</button>
+                <button id="increase-font" class="btn-icon" aria-label="Aumentar fonte">A+</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="register-container">
+        <div class="progress-steps">
+            <div class="step active" data-step="1">
+                <div class="step-number">1</div>
+                <span>Informações Pessoais</span>
+            </div>
+            <div class="step" data-step="2">
+                <div class="step-number">2</div>
+                <span>Saúde</span>
+            </div>
+            <div class="step" data-step="3">
+                <div class="step-number">3</div>
+                <span>Segurança</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <div class="register-card">
+            <h1 class="register-title">Crie sua conta e comece sua jornada de saúde!</h1>
+            
+            <form id="cadastroForm" novalidate class="register-form">
+                <div class="form-step" data-step="1">
+                    <div class="form-group">
+                        <label for="nome">
+                            <i class="fas fa-user"></i> Nome completo
+                        </label>
+                        <div class="input-with-icon">
+                            <input type="text" id="nome" name="nome" required 
+                                   placeholder="Digite seu nome completo"
+                                   aria-required="true">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">
+                            <i class="fas fa-envelope"></i> Email
+                        </label>
+                        <div class="input-with-icon">
+                            <input type="email" id="email" name="email" required 
+                                   placeholder="seu.email@exemplo.com"
+                                   aria-required="true">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefone">
+                            <i class="fas fa-phone"></i> Telefone
+                        </label>
+                        <div class="input-with-icon">
+                            <input type="tel" id="telefone" name="telefone" required 
+                                   placeholder="(00) 00000-0000"
+                                   aria-required="true">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cidade">
+                                <i class="fas fa-city"></i> Cidade
+                            </label>
+                            <div class="input-with-icon">
+                                <input type="text" id="cidade" name="cidade" required 
+                                       placeholder="Sua cidade"
+                                       aria-required="true">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="estado">
+                                <i class="fas fa-map-marker-alt"></i> Estado
+                            </label>
+                            <div class="input-with-icon">
+                                <select id="estado" name="estado" required aria-required="true">
+                                    <option value="">Selecione</option>
+                                    <option value="AC">Acre</option>
+                                    <option value="AL">Alagoas</option>
+                                    <option value="AP">Amapá</option>
+                                    <option value="AM">Amazonas</option>
+                                    <option value="BA">Bahia</option>
+                                    <option value="CE">Ceará</option>
+                                    <option value="DF">Distrito Federal</option>
+                                    <option value="ES">Espírito Santo</option>
+                                    <option value="GO">Goiás</option>
+                                    <option value="MA">Maranhão</option>
+                                    <option value="MT">Mato Grosso</option>
+                                    <option value="MS">Mato Grosso do Sul</option>
+                                    <option value="MG">Minas Gerais</option>
+                                    <option value="PA">Pará</option>
+                                    <option value="PB">Paraíba</option>
+                                    <option value="PR">Paraná</option>
+                                    <option value="PE">Pernambuco</option>
+                                    <option value="PI">Piauí</option>
+                                    <option value="RJ">Rio de Janeiro</option>
+                                    <option value="RN">Rio Grande do Norte</option>
+                                    <option value="RS">Rio Grande do Sul</option>
+                                    <option value="RO">Rondônia</option>
+                                    <option value="RR">Roraima</option>
+                                    <option value="SC">Santa Catarina</option>
+                                    <option value="SP">S. Paulo</option>
+                                    <option value="SE">Sergipe</option>
+                                    <option value="TO">Tocantins</option>
+                                </select>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-next" data-next="2">Próximo <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="form-step d-none" data-step="2">
+                    <div class="form-group">
+                        <label for="peso">
+                            <i class="fas fa-weight"></i> Peso (kg)
+                        </label>
+                        <div class="input-with-icon">
+                            <input type="number" id="peso" name="peso" step="0.1" required 
+                                   placeholder="Ex: 70.5"
+                                   min="20" max="300"
+                                   aria-required="true">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="altura">
+                            <i class="fas fa-ruler-vertical"></i> Altura (cm)
+                        </label>
+                        <div class="input-with-icon">
+                            <input type="number" id="altura" name="altura" required 
+                                   placeholder="Ex: 175"
+                                   min="50" max="250"
+                                   aria-required="true">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="idade">
+                            <i class="fas fa-birthday-cake"></i> Idade
+                        </label>
+                        <div class="input-with-icon">
+                            <input type="number" id="idade" name="idade" required 
+                                   placeholder="Ex: 25"
+                                   min="12" max="120"
+                                   aria-required="true">
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" data-prev="1">
+                            <i class="fas fa-arrow-left"></i> Voltar
+                        </button>
+                        <button type="button" class="btn btn-next" data-next="3">
+                            Próximo <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-step d-none" data-step="3">
+                    <div class="form-group">
+                        <label for="senha">
+                            <i class="fas fa-lock"></i> Senha
+                        </label>
+                        <div class="input-with-icon password-field">
+                            <input type="password" id="senha" name="senha" required 
+                                   placeholder="Crie uma senha forte"
+                                   aria-required="true"
+                                   autocomplete="new-password">
+                            <button type="button" class="toggle-password" aria-label="Mostrar senha">
+                                <i class="far fa-eye"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="password-strength">
+                            <div class="strength-meter">
+                                <div class="strength-meter-fill" data-strength="0"></div>
+                            </div>
+                            <div class="strength-text">Força da senha: <span>Fraca</span></div>
+                        </div>
+
+                        <div class="password-requirements">
+                            <p class="requirement" data-requirement="length">
+                                <i class="far fa-circle"></i> Mínimo de 8 caracteres
+                            </p>
+                            <p class="requirement" data-requirement="uppercase">
+                                <i class="far fa-circle"></i> Pelo menos 1 letra maiúscula
+                            </p>
+                            <p class="requirement" data-requirement="lowercase">
+                                <i class="far fa-circle"></i> Pelo menos 1 letra minúscula
+                            </p>
+                            <p class="requirement" data-requirement="number">
+                                <i class="far fa-circle"></i> Pelo menos 1 número
+                            </p>
+                            <p class="requirement" data-requirement="special">
+                                <i class="far fa-circle"></i> Pelo menos 1 caractere especial (!@#$%&*)
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirmarSenha">
+                            <i class="fas fa-lock"></i> Confirmar senha
+                        </label>
+                        <div class="input-with-icon password-field">
+                            <input type="password" id="confirmarSenha" name="confirmarSenha" required 
+                                   placeholder="Digite a senha novamente"
+                                   aria-required="true"
+                                   autocomplete="new-password">
+                            <button type="button" class="toggle-password" aria-label="Mostrar senha">
+                                <i class="far fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="password-match">
+                            <i class="fas fa-check-circle d-none"></i>
+                            <span>As senhas coincidem</span>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" data-prev="2">
+                            <i class="fas fa-arrow-left"></i> Voltar
+                        </button>
+                        <button type="submit" class="btn btn-primary" id="submitBtn" disabled>
+                            <i class="fas fa-user-plus"></i> Criar Conta
+                        </button>
+                    </div>
+                </div>
+            
+            </form>
+            
+            <div id="error-message" class="error-message" role="alert"></div>
+            
+            <p class="login-link">Já tem uma conta? <a href="login.html">Faça login aqui</a></p>
+        </div> <!-- .register-card -->
+    </div> <!-- .register-container -->
+    
+    <div class="success-message d-none" id="successMessage">
+        <div class="success-content">
+            <div class="checkmark">
+                <i class="fas fa-check"></i>
+            </div>
+            <h2>Cadastro realizado com sucesso!</h2>
+            <p>Você será redirecionado para a página de login em <span id="countdown">5</span> segundos...</p>
+            <a href="login.html" class="btn btn-primary">Ir para o login agora</a>
+        </div>
+    </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/accessibility.js"></script>
+    <script src="js/register.js"></script>
+</body>
+</html>
+
+
+

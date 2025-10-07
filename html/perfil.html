@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/themes/theme.css">
+    <link rel="stylesheet" href="css/perfil.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="nav-left">
+            <button onclick="window.location.href='home.html'" class="health-button">
+                <h2>HEALTH</h2>
+            </button>
+        </div>
+        <nav class="nav-right">
+            <a href="login.html" class="nav-link"><i class="fas fa-sign-out-alt"></i> Sair</a>
+        </nav>
+    </header>
+
+    <div class="accessibility-buttons">
+        <button id="toggle-tema">Alternar Modo Escuro</button>
+        <button id="increase-font">A+</button>
+        <button id="decrease-font">A-</button>
+    </div>
+    
+    <div class="perfil-container">
+        <div class="perfil-info">
+            <div class="avatar-container">
+                <img id="user-avatar" class="perfil-avatar" src="/uploads/default-avatar.png" alt="Avatar do usuário">
+                <div class="avatar-upload">
+                    <label for="avatar-input" class="upload-btn">
+                        <i class="fas fa-camera"></i>
+                    </label>
+                    <input type="file" id="avatar-input" accept="image/*" style="display: none;">
+                </div>
+            </div>
+            <div class="action-group">
+                <button class="perfil-button" onclick="togglePerfilInfo()">
+                    <i class="fas fa-user"></i>
+                    Perfil
+                </button>
+            </div>
+            <div class="perfil-info-container" id="perfilInfo">
+                <p>Nome: <span id="nome">Usuário</span></p>
+                <p>Email: <span id="email">email@exemplo.com</span></p>
+                <p>Peso: <span id="peso">0</span> kg</p>
+                <p>Altura: <span id="altura">0</span> m</p>
+                <p>Idade: <span id="idade">0</span> anos</p>
+            </div>
+
+            <div class="action-group">
+                <button class="edit-button" onclick="toggleEditForm()">
+                    <i class="fas fa-edit"></i>
+                    Editar Dados
+                </button>
+                <button class="metas-button" onclick="toggleMetas()">
+                    <i class="fas fa-bullseye"></i>
+                    Minhas Metas
+                </button>
+            </div>
+
+            <form class="edit-form" id="editForm" style="display: none;" onsubmit="event.preventDefault(); salvarDados();">
+            <input type="text" id="editNome" placeholder="Novo Nome">
+            <input type="email" id="editEmail" placeholder="Novo Email">
+            <input type="number" id="editPeso" placeholder="Novo Peso (kg)" step="0.1">
+            <input type="number" id="editAltura" placeholder="Nova Altura (m)" step="0.01">
+            <input type="number" id="editIdade" placeholder="Nova Idade (anos)">
+            <button type="submit">Salvar</button>
+            </form>
+
+            
+            <div class="metas-form" id="metasForm" style="display: none;">
+                <div class="meta-item">
+                    <label for="metaAgua">Meta Diária de Água (ml):</label>
+                    <input type="number" id="metaAgua" placeholder="Ex: 2000" min="0">
+                </div>
+                <div class="meta-item">
+                    <label for="metaCalorias">Meta Diária de Calorias:</label>
+                    <input type="number" id="metaCalorias" placeholder="Ex: 2000" min="0">
+                </div>
+                <div class="meta-item">
+                    <label for="metaPeso">Meta de Peso (kg):</label>
+                    <input type="number" id="metaPeso" placeholder="Ex: 70" step="0.1" min="0">
+                </div>
+                <button type="button" onclick="salvarMetas()">Salvar Metas</button>
+            </div>
+        </div>
+        
+        <div class="right-container">
+            <!-- Sistema de Gamificação -->
+            <div class="gamification-section">
+                <div class="card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-trophy"></i> Seu Progresso</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="container">
+                            <div class="profile-header">
+                                <div class="avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="user-info">
+                                    <h1 class="user-name"></h1>
+                                    <div class="xp-container">
+                                        <div class="xp-bar">
+                                            <div class="xp-progress" style="width: 0%"></div>
+                                        </div>
+                                        <div class="xp-info">
+                                            <span class="current-xp">0 XP</span>
+                                            <span class="next-level">Próximo nível: 1000 XP</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="level-badge"></div>
+                                
+                                
+                            
+                            
+                            </div>
+
+                            <div class="goals-grid">
+                                <div class="goal-card">
+                                    <h3 class="goal-title">Meta Diária de Água</h3>
+                                    <div class="goal-progress">
+                                        <div class="progress-bar" style="width: 0%"></div>
+                                    </div>
+                                    <div class="goal-info">
+                                        <span class="current-value">0 ml</span>
+                                        <span class="target-value">2000 ml</span>
+                                    </div>
+                                </div>
+                                <div class="goal-card">
+                                    <h3 class="goal-title">Meta Diária de Calorias</h3>
+                                    <div class="goal-progress">
+                                        <div class="progress-bar" style="width: 0%"></div>
+                                    </div>
+                                    <div class="goal-info">
+                                        <span class="current-value">0 kcal</span>
+                                        <span class="target-value">2000 kcal</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="achievements-grid">
+                                <div class="achievement-card">
+                                    <div class="achievement-icon">
+                                        <i class="fas fa-tint"></i>
+                                    </div>
+                                    <h3 class="achievement-title">Mestre da Hidratação</h3>
+                                    <p class="achievement-description">Bebeu 2L de água em um dia</p>
+                                </div>
+                                <div class="achievement-card">
+                                    <div class="achievement-icon">
+                                        <i class="fas fa-fire"></i>
+                                    </div>
+                                    <h3 class="achievement-title">Controle Calórico</h3>
+                                    <p class="achievement-description">Registrou calorias por 7 dias seguidos</p>
+                                </div>
+                                <div class="achievement-card">
+                                    <div class="achievement-icon">
+                                        <i class="fas fa-calendar-check"></i>
+                                    </div>
+                                    <h3 class="achievement-title">Consistência</h3>
+                                    <p class="achievement-description">Manteve o hábito por 30 dias</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+          
+
+    <script>
+        // Função para carregar os dados do usuário
+        async function carregarDadosUsuario() {
+            try {
+                const response = await fetch('http://localhost:3000/usuarios/perfil', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+
+                if (response.ok) {
+                    const usuario = await response.json();
+                    // Atualiza o nome do usuário em todos os lugares necessários
+                    document.querySelector('.user-name').textContent = usuario.nome;
+                    document.getElementById('nome').textContent = usuario.nome;
+                    document.getElementById('email').textContent = usuario.email;
+                    document.getElementById('peso').textContent = usuario.peso;
+                    document.getElementById('altura').textContent = usuario.altura;
+                    document.getElementById('idade').textContent = usuario.idade;
+                }
+            } catch (error) {
+                console.error('Erro ao carregar dados do usuário:', error);
+                alert('Erro ao carregar dados do usuário');
+            }
+        }
+
+        // Carrega os dados do usuário quando a página carrega
+        document.addEventListener('DOMContentLoaded', carregarDadosUsuario);
+
+        // Função para lidar com o upload de foto
+        document.getElementById('avatar-input').addEventListener('change', async function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                // Verificar o tipo MIME do arquivo
+                if (!file.type.startsWith('image/')) {
+                    alert('Por favor, selecione apenas arquivos de imagem (jpg, jpeg, png, gif)');
+                    return;
+                }
+
+                const formData = new FormData();
+                formData.append('avatar', file);
+
+                try {
+                    const response = await fetch('http://localhost:3000/upload-avatar', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`
+                        },
+                        body: formData
+                    });
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        document.getElementById('user-avatar').src = data.avatarUrl;
+                        alert('Avatar atualizado com sucesso!');
+                    } else {
+                        const errorData = await response.json();
+                        alert(errorData.message || 'Erro ao fazer upload da foto');
+                    }
+                } catch (error) {
+                    console.error('Erro:', error);
+                    alert('Erro ao fazer upload da foto');
+                }
+            }
+        });
+
+        // Função para alternar a visibilidade do formulário de metas
+        function toggleMetas() {
+            const metasForm = document.getElementById('metasForm');
+            metasForm.style.display = metasForm.style.display === 'none' ? 'block' : 'none';
+            
+            // Carregar metas existentes quando o formulário é aberto
+            if (metasForm.style.display === 'block') {
+                carregarMetas();
+            }
+        }
+
+        // Função para carregar as metas do usuário
+        async function carregarMetas() {
+            try {
+                const response = await fetch('http://localhost:3000/metas', {
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+
+                if (response.ok) {
+                    const metas = await response.json();
+                    document.getElementById('metaAgua').value = metas.meta_agua || '';
+                    document.getElementById('metaCalorias').value = metas.meta_calorias || '';
+                    document.getElementById('metaPeso').value = metas.meta_peso || '';
+                }
+            } catch (error) {
+                console.error('Erro ao carregar metas:', error);
+                alert('Erro ao carregar metas');
+            }
+        }
+
+        // Função para salvar as metas do usuário
+        async function salvarMetas() {
+            const metaAgua = document.getElementById('metaAgua').value;
+            const metaCalorias = document.getElementById('metaCalorias').value;
+            const metaPeso = document.getElementById('metaPeso').value;
+
+            try {
+                const response = await fetch('http://localhost:3000/metas', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                    body: JSON.stringify({
+                        metaAgua,
+                        metaCalorias,
+                        metaPeso
+                    })
+                });
+
+                if (response.ok) {
+                    alert('Metas salvas com sucesso!');
+                    toggleMetas(); // Fecha o formulário após salvar
+                } else {
+                    const data = await response.json();
+                    alert(data.message || 'Erro ao salvar metas');
+                }
+            } catch (error) {
+                console.error('Erro ao salvar metas:', error);
+                alert('Erro ao salvar metas');
+            }
+        }
+
+        // registar metas
+
+        async function salvarMetas() {
+    const metaAgua = parseInt(document.getElementById('metaAgua').value);
+    const metaCalorias = parseInt(document.getElementById('metaCalorias').value);
+    const metaPeso = parseFloat(document.getElementById('metaPeso').value);
+    
+
+    try {
+        const response = await fetch('http://localhost:3000/metas', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            },
+            body: JSON.stringify({
+                metaAgua,
+                metaCalorias,
+                metaPeso
+            })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            alert('Metas salvas com sucesso!');
+        } else {
+            alert(data.message || 'Erro ao salvar metas');
+        }
+    } catch (error) {
+        console.error('Erro ao salvar metas:', error);
+        alert('Erro ao salvar metas');
+    }
+}
+
+    </script>
+    <script src="js/perfil.js"></script>
+</body>
+</html>
+

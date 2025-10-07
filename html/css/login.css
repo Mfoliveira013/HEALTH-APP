@@ -1,0 +1,541 @@
+/* Variáveis de cores */
+:root {
+    --primary-color: #1abc9c;
+    --primary-dark: #16a085;
+    --secondary-color: #4da6ff;
+    --white: #ffffff;
+    --light-gray: #f8f9fa;
+    --medium-gray: #e9ecef;
+    --dark-gray: #2c3e50;
+    --text: #333;
+    --text-light: #7f8c8d;
+    --border: #dee2e6;
+    --success: #2ecc71;
+    --warning: #f39c12;
+    --error: #e74c3c;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease-in-out;
+    --border-radius: 12px;
+    --card-bg: #ffffff;
+    --input-bg: #f8f9fa;
+}
+
+/* Modo Escuro */
+.dark-theme {
+    --light-gray: #2c3e50;
+    --dark-gray: #ecf0f1;
+    --text: #ecf0f1;
+    --border: #3e4c5e;
+    --card-bg: #2c3e50;
+    --input-bg: #34495e;
+    --text-light: #bdc3c7;
+    background-color: #1a252f;
+}
+
+/* Reset e estilos base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--light-gray);
+    color: var(--text);
+    line-height: 1.6;
+    transition: var(--transition);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Barra de acessibilidade */
+.accessibility-bar {
+    background-color: var(--dark-gray);
+    padding: 0.5rem 2rem;
+    display: flex;
+    justify-content: flex-end;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.accessibility-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+}
+
+.btn-icon:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Container principal */
+.login-container {
+    display: flex;
+    min-height: 100vh;
+    padding: 5rem 2rem 2rem;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+}
+
+.dark-theme .login-container {
+    background: linear-gradient(135deg, #1a252f 0%, #2c3e50 100%);
+}
+
+/* Card de login */
+.login-card {
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 450px;
+    position: relative;
+    z-index: 1;
+    transform: translateY(0);
+    opacity: 1;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+}
+
+.login-card.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.login-header h1 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.login-header p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+/* Formulário */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 0.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text);
+    font-size: 0.9rem;
+}
+
+label i {
+    margin-right: 0.5rem;
+    color: var(--primary-color);
+    width: 20px;
+    text-align: center;
+}
+
+.input-with-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-with-icon input {
+    width: 100%;
+    padding: 0.9rem 1rem 0.9rem 2.8rem;
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius);
+    font-size: 0.95rem;
+    background-color: var(--input-bg);
+    color: var(--text);
+    transition: var(--transition);
+}
+
+.dark-theme .input-with-icon input {
+    border-color: var(--border);
+}
+
+.input-with-icon input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(26, 188, 156, 0.2);
+}
+
+.input-with-icon i {
+    position: absolute;
+    left: 1rem;
+    color: var(--text-light);
+    transition: var(--transition);
+}
+
+.input-with-icon input:focus + i {
+    color: var(--primary-color);
+}
+
+/* Campo de senha */
+.password-field {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: var(--transition);
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+.toggle-password:hover {
+    color: var(--primary-color);
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.dark-theme .toggle-password:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Opções do formulário */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.5rem 0;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 1.8rem;
+    margin-bottom: 0;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: var(--text);
+    user-select: none;
+}
+
+.remember-me input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 18px;
+    width: 18px;
+    background-color: var(--input-bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    transition: var(--transition);
+}
+
+.remember-me:hover input ~ .checkmark {
+    border-color: var(--primary-color);
+}
+
+.remember-me input:checked ~ .checkmark {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.checkmark:after {
+    content: '';
+    position: absolute;
+    display: none;
+}
+
+.remember-me input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.remember-me .checkmark:after {
+    left: 6px;
+    top: 2px;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.forgot-password {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+    color: var(--primary-dark);
+}
+
+/* reCAPTCHA */
+.g-recaptcha {
+    margin: 1rem 0;
+    display: flex;
+    justify-content: center;
+}
+
+/* Botões */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.9rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: var(--border-radius);
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-block {
+    width: 100%;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 4px 15px rgba(26, 188, 156, 0.3);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(26, 188, 156, 0.4);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+/* Botão de login com Google */
+.btn-google {
+    background-color: white;
+    color: #444;
+    border: 1px solid #ddd;
+    padding: 0.8rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    width: 100%;
+    transition: var(--transition);
+}
+
+.dark-theme .btn-google {
+    background-color: #3a3a3a;
+    color: #f1f1f1;
+    border-color: #555;
+}
+
+.btn-google:hover {
+    background-color: #f8f8f8;
+    border-color: #ccc;
+}
+
+.dark-theme .btn-google:hover {
+    background-color: #444;
+    border-color: #666;
+}
+
+.social-icon {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+}
+
+/* Divisor */
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 1.5rem 0;
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--border);
+}
+
+.divider::before {
+    margin-right: 1rem;
+}
+
+.divirder::after {
+    margin-left: 1rem;
+}
+
+/* Link de cadastro */
+.signup-link {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+.signup-link a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
+/* Mensagem de erro */
+.error-message {
+    background-color: rgba(231, 76, 60, 0.1);
+    color: var(--error);
+    padding: 0.8rem 1rem;
+    border-radius: var(--border-radius);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    border-left: 3px solid var(--error);
+    display: none;
+}
+
+.error-message.show {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Loader do botão */
+.button-loader {
+    display: none;
+    position: absolute;
+    right: 1rem;
+}
+
+.button-loader .spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 0.8s linear infinite;
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Responsividade */
+@media (min-width: 992px) {
+    .login-container {
+        padding: 6rem 4rem 4rem;
+    }
+    
+    .login-card {
+        padding: 3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-container {
+        padding: 4rem 1rem 2rem;
+    }
+    
+    .login-card {
+        padding: 1.5rem;
+    }
+    
+    .login-header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .form-options {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .forgot-password {
+        margin-left: 0;
+    }
+}
+
+/* Efeito de foco para acessibilidade */
+*:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Esconder elementos visualmente, mas mantê-los acessíveis */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+

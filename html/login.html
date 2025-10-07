@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Health App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Bangers&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/login.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <style>
+        .header {
+            background: linear-gradient(90deg, #1e3a5f 0%, #2c5282 100%);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 40px;
+            color: white;
+            font-family: 'Bangers', cursive;
+            font-size: 36px;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 0px #0f1b30;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+        
+        .header-logo {
+            font-size: 38px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            transition: transform 0.2s ease, color 0.3s ease;
+            color: #00b894;
+            text-shadow: 2px 2px 0px #053f2a;
+        }
+        
+        .header-logo:hover {
+            transform: scale(1.05);
+            color: #03c988;
+        }
+        
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .font-size-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .font-size-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+        
+        .toggle-dark-mode {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+        
+        .toggle-dark-mode:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="light-theme">
+    <header class="header">
+        <div class="header-logo">HEALTH</div>
+        <div class="header-controls">
+            <button class="toggle-dark-mode" id="toggle-theme" aria-label="Alternar tema">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button class="font-size-btn" id="increase-font" aria-label="Aumentar fonte">A+</button>
+            <button class="font-size-btn" id="decrease-font" aria-label="Diminuir fonte">A-</button>
+        </div>
+    </header>
+
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <h1>Bem-vindo de volta!</h1>
+                <p>Entre na sua conta para continuar sua jornada de saúde</p>
+            </div>
+            
+            <form id="formLogin" class="login-form" novalidate>
+                <div id="error-message" class="error-message" role="alert"></div>
+                
+                <div class="form-group">
+                    <label for="email">
+                        <i class="fas fa-envelope"></i> Email
+                    </label>
+                    <div class="input-with-icon">
+                        <input type="email" id="email" name="email" required 
+                               placeholder="seu.email@exemplo.com"
+                               aria-required="true"
+                               autocomplete="username">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="senha">
+                        <i class="fas fa-lock"></i> Senha
+                    </label>
+                    <div class="input-with-icon password-field">
+                        <input type="password" id="senha" name="senha" required 
+                               placeholder="Digite sua senha"
+                               aria-required="true"
+                               autocomplete="current-password"
+                               minlength="8">
+                        <button type="button" class="toggle-password" aria-label="Mostrar senha">
+                            <i class="far fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" id="lembrar" name="lembrar">
+                        <span class="checkmark"></span>
+                        Lembrar de mim
+                    </label>
+                    <a href="recuperar-senha.html" class="forgot-password">Esqueceu a senha?</a>
+                </div>
+                
+                <div class="g-recaptcha" data-sitekey="6LdYseErAAAAADoQo0MGhIY58MXKfvdgkx-9Bn0v"></div>
+                
+                <button type="submit" class="btn btn-primary btn-block" id="loginButton">
+                    <span class="button-text">Entrar</span>
+                    <div class="button-loader">
+                        <div class="spinner"></div>
+                    </div>
+                </button>
+                
+                <div class="divider">
+                    <span>ou continue com</span>
+                </div>
+                
+                <div class="social-login">
+                    <button type="button" class="btn btn-google">
+                        <img src="https://www.google.com/favicon.ico" alt="Google" class="social-icon">
+                        Google
+                    </button>
+                </div>
+            </form>
+            
+            <p class="signup-link">Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
+        </div>
+        
+        <div class="login-illustration">
+            <img src="https://cdn.pixabay.com/photo/2017/02/01/13/52/analysis-2030261_1280.png" alt="Saúde e bem-estar">
+        </div>
+    </div>
+    
+    <div class="notification" id="notification"></div>
+    
+    <script src="js/accessibility.js"></script>
+    <script src="js/login.js"></script>
+</body>
+</html>
+
+

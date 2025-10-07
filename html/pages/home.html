@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - HEALTH</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body class="light-theme">
+    <!-- Barra de acessibilidade -->
+    <div class="accessibility-bar">
+        <div class="accessibility-controls">
+            <button id="toggle-theme" class="btn-icon" aria-label="Alternar tema">
+                <i class="fas fa-moon"></i>
+            </button>
+            <div class="font-controls">
+                <button id="decrease-font" class="btn-icon" aria-label="Diminuir fonte">A-</button>
+                <button id="reset-font" class="btn-icon" aria-label="Tamanho de fonte padrão">A</button>
+                <button id="increase-font" class="btn-icon" aria-label="Aumentar fonte">A+</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cabeçalho -->
+    <header class="dashboard-header">
+        <div class="header-left">
+            <button class="menu-toggle btn-icon" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <h1 class="logo">HEALTH</h1>
+        </div>
+        <div class="user-profile">
+            <div class="xp-bar">
+                <span>Nível 3</span>
+                <div class="xp-progress">
+                    <div class="xp-fill" style="width: 65%;"></div>
+                </div>
+                <span>65/100 XP</span>
+            </div>
+            <div class="user-avatar" id="user-avatar">
+                MO
+            </div>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <div class="dashboard-container">
+        <!-- Menu Lateral -->
+        <aside class="sidebar" id="sidebar">
+            <nav class="sidebar-nav">
+                <ul class="sidebar-menu">
+                    <li>
+                        <a href="home.html" class="sidebar-item active">
+                            <i class="fas fa-home"></i>
+                            <span>Início</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="sidebar-item">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Progresso</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="sidebar-item">
+                            <i class="fas fa-utensils"></i>
+                            <span>Nutrição</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="sidebar-item">
+                            <i class="fas fa-dumbbell"></i>
+                            <span>Exercícios</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="sidebar-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Consultas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="sidebar-item">
+                            <i class="fas fa-trophy"></i>
+                            <span>Conquistas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="perfil.html" class="sidebar-item">
+                            <i class="fas fa-user"></i>
+                            <span>Meu Perfil</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="login.html" class="sidebar-item">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Sair</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Conteúdo Principal -->
+        <main class="main-content">
+            <!-- Seção de Boas-vindas -->
+            <section class="welcome-section">
+                <h2>Olá, <span class="gradient-text">Maurício</span>! 👋</h2>
+                <p>Seu resumo diário está pronto. Continue assim!</p>
+            </section>
+
+            <!-- Cartões de Métricas -->
+            <div class="metrics-grid">
+                <!-- Cartão de Água -->
+                <div class="metric-card hover-scale">
+                    <div class="metric-icon water">
+                        <i class="fas fa-tint"></i>
+                    </div>
+                    <div class="metric-value" id="water-amount">1.2L</div>
+                    <div class="metric-label">de 2L de água</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 60%;"></div>
+                    </div>
+                    <button class="btn btn-outline btn-sm mt-2" id="add-water">
+                        <i class="fas fa-plus"></i> Adicionar Água
+                    </button>
+                </div>
+
+                <!-- Cartão de Calorias -->
+                <div class="metric-card hover-scale">
+                    <div class="metric-icon calories">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="metric-value" id="calories-amount">1,250</div>
+                    <div class="metric-label">kcal consumidas</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 42%;"></div>
+                    </div>
+                    <button class="btn btn-outline btn-sm mt-2" id="add-food">
+                        <i class="fas fa-utensils"></i> Registrar Refeição
+                    </button>
+                </div>
+
+                <!-- Cartão de Peso -->
+                <div class="metric-card hover-scale">
+                    <div class="metric-icon weight">
+                        <i class="fas fa-weight"></i>
+                    </div>
+                    <div class="metric-value" id="weight-amount">78.5kg</div>
+                    <div class="metric-label">Peso Atual</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 75%;"></div>
+                    </div>
+                    <button class="btn btn-outline btn-sm mt-2" id="update-weight">
+                        <i class="fas fa-sync-alt"></i> Atualizar
+                    </button>
+                </div>
+
+                <!-- Cartão de XP -->
+                <div class="metric-card hover-scale">
+                    <div class="metric-icon xp">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="metric-value" id="xp-amount">65 XP</div>
+                    <div class="metric-label">Hoje</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 65%;"></div>
+                    </div>
+                    <button class="btn btn-outline btn-sm mt-2" id="view-quests">
+                        <i class="fas fa-tasks"></i> Ver Missões
+                    </button>
+                </div>
+            </div>
+
+            <!-- Seção de Hidratação -->
+            <section class="section">
+                <div class="section-header">
+                    <h3 class="section-title">
+                        <i class="fas fa-tint"></i> Hidratação Diária
+                    </h3>
+                    <button class="btn btn-primary btn-sm" id="log-water">
+                        <i class="fas fa-plus"></i> Registrar Água
+                    </button>
+                </div>
+                <div class="water-intake">
+                    <div class="water-bottles">
+                        <div class="water-bottle" data-amount="250">
+                            <i class="fas fa-wine-bottle"></i>
+                            <span>250ml</span>
+                        </div>
+                        <div class="water-bottle" data-amount="500">
+                            <i class="fas fa-wine-bottle"></i>
+                            <span>500ml</span>
+                        </div>
+                        <div class="water-bottle active" data-amount="1000">
+                            <i class="fas fa-wine-bottle"></i>
+                            <span>1L</span>
+                        </div>
+                    </div>
+                    <div class="water-progress">
+                        <div class="water-wave" id="water-wave">
+                            <div class="water-text">60%</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção de Atividades Recentes -->
+            <section class="section">
+                <div class="section-header">
+                    <h3 class="section-title">
+                        <i class="fas fa-history"></i> Atividades Recentes
+                    </h3>
+                    <button class="btn btn-outline btn-sm" id="view-all-activities">
+                        Ver Tudo
+                    </button>
+                </div>
+                <div class="activities-list">
+                    <div class="activity-item">
+                        <div class="activity-icon success">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="activity-details">
+                            <h4>Meta de Água Alcançada!</h4>
+                            <p>Você atingiu 100% da sua meta diária de água.</p>
+                            <span class="activity-time">Há 2 horas</span>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon info">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div class="activity-details">
+                            <h4>Refeição Registrada</h4>
+                            <p>Almoço - 650 kcal</p>
+                            <span class="activity-time">Há 3 horas</span>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="activity-icon warning">
+                            <i class="fas fa-exclamation"></i>
+                        </div>
+                        <div class="activity-details">
+                            <h4>Meta de Exercícios</h4>
+                            <p>Você ainda não fez exercícios hoje.</p>
+                            <span class="activity-time">Hoje</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção de Missões Diárias -->
+            <section class="section">
+                <div class="section-header">
+                    <h3 class="section-title">
+                        <i class="fas fa-tasks"></i> Missões Diárias
+                    </h3>
+                    <span class="badge">3/5 concluídas</span>
+                </div>
+                <div class="quests-grid">
+                    <div class="quest-card success">
+                        <div class="quest-icon">
+                            <i class="fas fa-tint"></i>
+                        </div>
+                        <div class="quest-details">
+                            <h4>Hidratação Completa</h4>
+                            <p>Beba 2L de água</p>
+                            <div class="quest-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 100%;"></div>
+                                </div>
+                                <span>100%</span>
+                            </div>
+                        </div>
+                        <div class="quest-reward">
+                            <span class="xp-badge">+10 XP</span>
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                    </div>
+
+                    <div class="quest-card success">
+                        <div class="quest-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div class="quest-details">
+                            <h4>Alimentação Saudável</h4>
+                            <p>Coma 3 porções de frutas</p>
+                            <div class="quest-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 100%;"></div>
+                                </div>
+                                <span>100%</span>
+                            </div>
+                        </div>
+                        <div class="quest-reward">
+                            <span class="xp-badge">+15 XP</span>
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                    </div>
+
+                    <div class="quest-card in-progress">
+                        <div class="quest-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <div class="quest-details">
+                            <h4>Atividade Física</h4>
+                            <p>30 minutos de exercícios</p>
+                            <div class="quest-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 40%;"></div>
+                                </div>
+                                <span>40%</span>
+                            </div>
+                        </div>
+                        <div class="quest-reward">
+                            <span class="xp-badge">+20 XP</span>
+                            <i class="fas fa-running"></i>
+                        </div>
+                    </div>
+
+                    <div class="quest-card">
+                        <div class="quest-icon">
+                            <i class="fas fa-moon"></i>
+                        </div>
+                        <div class="quest-details">
+                            <h4>Sono de Qualidade</h4>
+                            <p>Durma 8 horas por noite</p>
+                            <div class="quest-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%;"></div>
+                                </div>
+                                <span>0%</span>
+                            </div>
+                        </div>
+                        <div class="quest-reward">
+                            <span class="xp-badge">+15 XP</span>
+                            <i class="far fa-clock"></i>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Avatar Flutuante -->
+    <div class="floating-avatar" id="floating-avatar">
+        <i class="fas fa-robot"></i>
+    </div>
+
+    <!-- Modal de Adicionar Água -->
+    <div class="modal" id="water-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Registrar Ingestão de Água</h3>
+                <button class="modal-close" id="close-water-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="water-amount">Quantidade (ml)</label>
+                    <input type="number" id="water-amount-input" class="form-control" min="0" step="50" value="250">
+                </div>
+                <div class="water-presets">
+                    <button class="btn btn-outline" data-amount="250">250ml</button>
+                    <button class="btn btn-outline" data-amount="500">500ml</button>
+                    <button class="btn btn-outline" data-amount="1000">1L</button>
+                </div>
+                <button class="btn btn-primary btn-block mt-3" id="save-water">
+                    <i class="fas fa-save"></i> Salvar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast" class="toast">
+        <div class="toast-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <div class="toast-message">Registro salvo com sucesso!</div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/accessibility.js"></script>
+    <script src="js/menu.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Inicializar o menu
+            initMenu();
+
+            // Modal de Água
+            const waterModal = document.getElementById('water-modal');
+            const logWaterBtn = document.getElementById('log-water');
+            const closeWaterModal = document.getElementById('close-water-modal');
+            const saveWaterBtn = document.getElementById('save-water');
+            const waterAmountInput = document.getElementById('water-amount-input');
+            
+            // Abrir modal de água
+            logWaterBtn.addEventListener('click', function() {
+                waterModal.classList.add('active');
+            });
+            
+            // Fechar modal de água
+            closeWaterModal.addEventListener('click', function() {
+                waterModal.classList.remove('active');
+            });
+            
+            // Presets de quantidade de água
+            document.querySelectorAll('.water-presets .btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const amount = this.getAttribute('data-amount');
+                    waterAmountInput.value = amount;
+                });
+            });
+            
+            // Salvar água
+            saveWaterBtn.addEventListener('click', function() {
+                const amount = waterAmountInput.value;
+                // Aqui você adicionaria a lógica para salvar no backend
+                showToast(`+${amount}ml de água registrados!`, true);
+                waterModal.classList.remove('active');
+                
+                // Atualizar a interface
+                updateWaterIntake(parseInt(amount));
+            });
+
+            // Função para atualizar a ingestão de água
+            function updateWaterIntake(amount) {
+                const waterAmount = document.getElementById('water-amount');
+                const currentAmount = parseFloat(waterAmount.textContent) * 1000 || 0; // Converter para ml
+                const newAmount = currentAmount + amount;
+                const amountInLiters = (newAmount / 1000).toFixed(1);
+                
+                waterAmount.textContent = amountInLiters + 'L';
+                
+                // Atualizar a barra de progresso
+                const progress = Math.min(100, (newAmount / 2000) * 100); // 2L é a meta
+                document.querySelector('.water-wave').style.height = `${100 - progress}%`;
+                document.querySelector('.water-text').textContent = `${Math.round(progress)}%`;
+                
+                // Atualizar a barra de progresso do cartão
+                const progressBar = document.querySelector('.metric-card.water .progress-fill');
+                if (progressBar) {
+                    progressBar.style.width = `${progress}%`;
+                }
+                
+                // Animação de confete se atingir 100%
+                if (progress >= 100) {
+                    showToast('🎉 Meta de água diária alcançada!', true);
+                    createConfetti();
+                }
+            }
+
+            // Função para mostrar notificação toast
+            function showToast(message, isSuccess = true) {
+                const toast = document.getElementById('toast');
+                const toastIcon = toast.querySelector('.toast-icon i');
+                const toastMessage = toast.querySelector('.toast-message');
+                
+                // Atualizar ícone e mensagem
+                if (isSuccess) {
+                    toastIcon.className = 'fas fa-check-circle';
+                    toast.className = 'toast success show';
+                } else {
+                    toastIcon.className = 'fas fa-exclamation-circle';
+                    toast.className = 'toast error show';
+                }
+                
+                toastMessage.textContent = message;
+                
+                // Esconder após 5 segundos
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 5000);
+            }
+            
+            // Efeito de confete
+            function createConfetti() {
+                const colors = ['#1abc9c', '#3498db', '#9b59b6', '#e74c3c', '#f1c40f', '#2ecc71'];
+                const confettiContainer = document.createElement('div');
+                confettiContainer.style.position = 'fixed';
+                confettiContainer.style.top = '0';
+                confettiContainer.style.left = '0';
+                confettiContainer.style.width = '100%';
+                confettiContainer.style.height = '100%';
+                confettiContainer.style.pointerEvents = 'none';
+                confettiContainer.style.zIndex = '1000';
+                document.body.appendChild(confettiContainer);
+                
+                for (let i = 0; i < 100; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.position = 'absolute';
+                    confetti.style.width = Math.random() * 10 + 5 + 'px';
+                    confetti.style.height = Math.random() * 10 + 5 + 'px';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.top = '-20px';
+                    confetti.style.opacity = Math.random() * 0.5 + 0.5;
+                    confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                    confetti.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
+                    
+                    confettiContainer.appendChild(confetti);
+                    
+                    // Remover após a animação
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 5000);
+                }
+                
+                // Remover o container após a animação
+                setTimeout(() => {
+                    confettiContainer.remove();
+                }, 5000);
+            }
+            
+            // Interação com o avatar flutuante
+            const floatingAvatar = document.getElementById('floating-avatar');
+            floatingAvatar.addEventListener('click', function() {
+                const messages = [
+                    'Você está indo muito bem!',
+                    'Continue assim!',
+                    'Não desista dos seus objetivos!',
+                    'Água é essencial, não se esqueça!',
+                    'Você é incrível!'
+                ];
+                
+                const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+                showToast(randomMessage, true);
+                
+                // Animação de pulo
+                this.style.animation = 'none';
+                this.offsetHeight; // Trigger reflow
+                this.style.animation = 'bounce 0.5s ease';
+            });
+            
+            // Efeito de partículas no fundo
+            function createParticles() {
+                const particlesContainer = document.createElement('div');
+                particlesContainer.className = 'particles';
+                document.body.appendChild(particlesContainer);
+                
+                const particles = ['💧', '🍎', '🏋️', '💪', '❤️', '✨'];
+                
+                for (let i = 0; i < 20; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.textContent = particles[Math.floor(Math.random() * particles.length)];
+                    particle.style.left = Math.random() * 100 + 'vw';
+                    particle.style.top = Math.random() * 100 + 'vh';
+                    particle.style.fontSize = (Math.random() * 20 + 16) + 'px';
+                    particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                    particle.style.animationDelay = (Math.random() * 5) + 's';
+                    particlesContainer.appendChild(particle);
+                }
+            }
+            
+            // Inicializar partículas
+            createParticles();
+            
+            // Inicializar o menu
+            document.addEventListener('DOMContentLoaded', function() {
+                initMenu();
+            });
+            
+            // Atualizar relógio em tempo real
+            function updateClock() {
+                const now = new Date();
+                const timeString = now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+                const dateString = now.toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' });
+                
+                const clockElement = document.getElementById('clock');
+                if (clockElement) {
+                    clockElement.innerHTML = `${timeString} <small>${dateString}</small>`;
+                }
+            }
+            
+            setInterval(updateClock, 1000);
+            updateClock();
+            
+            // Adicionar funcionalidade aos botões de água rápida
+            document.querySelectorAll('.water-bottle').forEach(bottle => {
+                bottle.addEventListener('click', function() {
+                    const amount = parseInt(this.getAttribute('data-amount'));
+                    updateWaterIntake(amount);
+                    showToast(`+${amount}ml de água adicionados!`, true);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,1201 @@
+/* Importando tema base */
+@import url('../../css/themes/theme.css');
+
+/* Variáveis de tema */
+:root {
+    --primary-color: #4a90e2;
+    --secondary-color: #2c3e50;
+    --background-color: #f5f6fa;
+    --text-color: #2c3e50;
+    --card-background: #ffffff;
+    --border-color: #e1e1e1;
+    --success-color: #4a90e2;
+    --warning-color: #f1c40f;
+    --error-color: #e74c3c;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Tema escuro */
+[data-theme="dark"] {
+    --primary-color: #3498db;
+    --secondary-color: #ecf0f1;
+    --background-color: #2c3e50;
+    --text-color: #ecf0f1;
+    --card-background: #34495e;
+    --border-color: #2c3e50;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Reset e estilos base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.modo-escuro {
+    background-color: #000; /* Fundo preto para a página */
+    color: #fff; /* Texto branco */
+}
+
+.modo-escuro .perfil-container,
+.modo-escuro .tab-content {
+    background-color: #222; /* Fundo escuro para o container do perfil e abas */
+    border: 1px solid #444; /* Borda mais clara para o container */
+}
+
+.modo-escuro .card {
+    background-color: #ffffff; /* Fundo escuro para os cards */
+    border: 1px solid #444; /* Borda dos cards */
+}
+
+.modo-escuro h2,
+.modo-escuro p,
+.modo-escuro button,
+.modo-escuro .tab-content
+.modo-escuro .modal-content 
+.neon-text {
+        color: #4a90e2; /* Cor principal do neon */
+        text-shadow: 
+            0 0 5px #ffffff,
+            0 0 10px #ffffff,
+            0 0 20px #ffffff,
+            0 0 40px #ffffff,
+            0 0 80px #ffffff;
+        font-weight: bold; /* Deixa o texto mais forte para destacar */
+    }
+
+/* Container principal */
+.perfil-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+}
+
+/* Estilos do avatar e nível */
+.avatar-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 1.5rem;
+}
+
+.perfil-avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary-color);
+}
+
+.avatar-upload {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: var(--primary-color);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.avatar-upload:hover {
+    background-color: var(--primary-color-dark);
+}
+
+.upload-btn {
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.home-button {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    margin: 1rem 0;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    font-weight: 500;
+}
+
+.home-button:hover {
+    background-color: var(--primary-color-dark);
+}
+
+.home-button i {
+    margin-right: 8px;
+}
+
+.avatar-level {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    box-shadow: 0 2px 5px var(--shadow-color);
+}
+
+/* Seção de gamificação */
+.gamification-section {
+    margin-bottom: 2rem;
+}
+
+.card {
+    background-color: var(--card-background);
+    border-radius: 10px;
+    box-shadow: 0 2px 10px var(--shadow-color);
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+.card-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem;
+}
+
+.card-header h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+/* Barra de progresso */
+.progress-container {
+    margin-bottom: 2rem;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.progress-bar {
+    height: 10px;
+    background-color: var(--border-color);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: var(--primary-color);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+/* Metas */
+.goals-container {
+    margin-bottom: 2rem;
+}
+
+.goal-item {
+    margin-bottom: 1rem;
+}
+
+.goal-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.goal-progress {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.goal-bar {
+    flex: 1;
+    height: 8px;
+    background-color: var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.goal-fill {
+    height: 100%;
+    background-color: var(--primary-color);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+/* Conquistas */
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.achievement {
+    text-align: center;
+    padding: 1rem;
+    background-color: var(--card-background);
+    border-radius: 8px;
+    border: 2px solid var(--primary-color);
+    transition: transform 0.3s ease;
+}
+
+.achievement:hover {
+    transform: translateY(-5px);
+}
+
+.achievement i {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.achievement span {
+    display: block;
+    font-size: 0.8rem;
+}
+
+.achievement.locked {
+    border-color: var(--border-color);
+    opacity: 0.5;
+}
+
+.achievement.locked i {
+    color: var(--text-color);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .perfil-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .avatar-container {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .achievements-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Animações */
+@keyframes progressFill {
+    from { width: 0; }
+    to { width: var(--progress-width); }
+}
+
+@keyframes achievementUnlock {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.perfil-info {
+    flex: 1;
+    padding: 20px;
+    border-right: 1px solid #ddd;
+    text-align: center; /* Centraliza o texto */
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-size: 1.5em; /* Aumentar o tamanho do título */
+}
+
+.box {
+    background: #4a90e2; /* Cor azul */
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background-color 0.3s; /* Transição suave para o fundo */
+}
+
+.box:hover {
+    background: #218838; /* Tom mais escuro ao passar o mouse */
+}
+
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    border-radius: 15px;
+}
+
+.edit-form input {
+    margin-bottom: 20px; /* Aumenta o espaço abaixo dos campos */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 15px; /* Bordas arredondadas */
+    transition: border-color 0.3s; /* Adiciona transição ao foco */
+}
+
+.edit-form input:focus {
+    border-color: #4a90e2; /* Cor azul ao focar no campo */
+    outline: none; /* Remove o contorno padrão */
+}
+
+/* Estilos padrão para botões */
+button {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: #4a90e2;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #357abd;
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+}
+
+/* Ajustes específicos para botões existentes */
+#toggle-tema, #increase-font, #decrease-font {
+    padding: 0.5rem 1rem;
+    background: #4a90e2;
+    color: white;
+    border-radius: 5px;
+    margin: 0.5rem;
+}
+
+#toggle-tema:hover, #increase-font:hover, #decrease-font:hover {
+    background: #357abd;
+}
+
+.health-button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.health-button h2 {
+    color: #4a90e2;
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+/* Ajuste para o botão de salvar no formulário de edição */
+.edit-form button[type="submit"] {
+    background: #4a90e2;
+    color: white;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.edit-form button[type="submit"]:hover {
+    background: #357abd;
+}
+
+/* Ajuste para o botão de salvar metas */
+.metas-form button {
+    background: #4a90e2;
+    color: white;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.metas-form button:hover {
+    background: #357abd;
+}
+
+.right-container {
+    flex: 1;
+    padding: 20px;
+}
+
+.tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #4a90e2; /* Cor das abas */
+}
+
+.tab {
+    flex: 1;
+    padding: 10px;
+    background: #4a90e2; /* Cor das abas */
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Transição suave */
+}
+
+.tab:hover {
+    background: #218838; /* Tom mais escuro ao passar o mouse */
+}
+
+.tab-content {
+    display: none;
+    margin-top: 20px;
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.input-group {
+    display: flex; /* Alinha os elementos em linha */
+    align-items: center; /* Alinha os elementos verticalmente ao centro */
+    margin-bottom: 20px; /* Espaço abaixo do grupo de input */
+}
+
+.input-group input,
+.input-group select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 20px; /* Bordas arredondadas */
+    margin-right: 10px; /* Espaço entre os elementos */
+}
+
+.input-group button {
+    background: #4a90e2; /* Cor do botão */
+    color: white;
+    padding: 10px; /* Ajusta o padding para aumentar a altura */
+    border: none;
+    border-radius: 20px; /* Bordas arredondadas para o botão */
+    cursor: pointer;
+    width: 48%; /* Ajusta a largura dos botões */
+}
+
+.input-group .button-container {
+    display: flex; /* Alinha os botões em linha */
+    justify-content: space-between; /* Espaça os botões igualmente */
+    margin-top: 10px; /* Espaço acima dos botões */
+}
+
+.input-group button:hover {
+    background: #218838; /* Tom mais escuro ao passar o mouse */
+}
+
+.imc-button {
+    background: #4a90e2; /* Cor do botão */
+    color: white;
+    padding: 10px 20px; /* Aumenta o padding horizontal */
+    border: none;
+    border-radius: 20px; /* Bordas arredondadas para o botão */
+    cursor: pointer;
+    transition: background-color 0.3s; /* Transição suave */
+    width: 100%; /* Faz o botão ocupar toda a largura disponível */
+    margin-top: 10px; /* Espaço acima do botão */
+    margin-bottom: 10px;
+}
+
+.imc-button:hover {
+    background: #218838; /* Tom mais escuro ao passar o mouse */
+}
+
+.imc-result {
+    margin-top: 20px; /* Espaço acima do resultado do IMC */
+    text-align: center; /* Centraliza o texto do resultado */
+}
+
+.modal {
+    display: none; /* Inicialmente oculto */
+    position: fixed; /* Fica fixo na tela */
+    z-index: 1; /* Fica na frente */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Habilita rolagem se necessário */
+    background-color: rgba(0, 0, 0, 0.4); /* Fundo escuro com opacidade */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* Centraliza a janela modal */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Largura da modal */
+}
+
+.close {
+    color: #aaa;
+    float: right; /* Posiciona à direita */
+    font-size: 28px;
+    font-weight: bold; /* Aumenta a espessura da fonte */
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* CSS Responsivo */
+
+/* Ajustes para telas menores */
+@media (max-width: 768px) {
+    .perfil-container {
+        flex-direction: column; /* Muda a disposição para coluna */
+        padding: 10px; /* Reduz o padding */
+    }
+    
+    .perfil-info, .right-container {
+        border: none; /* Remove a borda */
+        text-align: center; /* Centraliza o texto */
+        padding: 10px; /* Reduz o padding */
+        width: 100%; /* Faz com que ocupem toda a largura */
+    }
+
+    /* Ajusta as tabs para ocupar mais espaço em telas menores */
+    .tabs {
+        flex-direction: column; /* Muda a disposição para coluna */
+    }
+
+    .tab {
+        padding: 15px; /* Aumenta o padding para toque fácil */
+        font-size: 1.1em; /* Aumenta o tamanho do texto */
+    }
+
+    /* Ajusta o botão de alternar tema e os botões de acessibilidade */
+    #toggle-tema, #increase-font, #decrease-font {
+        padding: 8px; /* Reduz o padding */
+        font-size: 0.9em; /* Reduz o tamanho da fonte */
+        width: 100%; /* Deixa cada botão ocupar uma linha completa */
+        margin-bottom: 10px; /* Espaçamento entre os botões */
+    }
+
+    /* Ajuste do modal em telas menores */
+    .modal-content {
+        width: 90%; /* Aumenta a largura do modal */
+        margin: 20% auto; /* Ajusta a margem para centralizar */
+        padding: 15px; /* Reduz o padding interno */
+    }
+
+    /* Reduz o tamanho dos cartões e do conteúdo */
+    .card {
+        margin: 10px 0; /* Reduz a margem */
+        padding: 15px; /* Reduz o padding */
+        font-size: 0.9em; /* Reduz o tamanho da fonte */
+    }
+    
+    /* Ajusta o tamanho dos inputs e botões */
+    .input-group input,
+    .input-group select,
+    .input-group button,
+    .imc-button {
+        width: 100%; /* Deixa os elementos ocuparem toda a largura */
+        margin-bottom: 10px; /* Espaço entre elementos */
+        padding: 12px; /* Aumenta o padding para toque fácil */
+        font-size: 1em; /* Aumenta o tamanho da fonte para melhor leitura */
+    }
+    
+    .imc-result {
+        font-size: 1em; /* Ajusta o tamanho do texto do resultado */
+    }
+}
+
+/* Ajustes para telas muito pequenas (smartphones menores) */
+@media (max-width: 480px) {
+    h2 {
+        font-size: 1.3em; /* Ajusta o tamanho do título */
+    }
+
+    /* Ajusta o texto neon para ficar mais legível em telas pequenas */
+    .neon-text {
+        font-size: 1em; /* Reduz o tamanho da fonte */
+        text-shadow: 0 0 4px #4a90e2, 0 0 8px #4a90e2; /* Ajusta o efeito neon */
+    }
+}
+
+/* Dashboard Resumo */
+.dashboard-resumo {
+    margin-bottom: 20px;
+}
+
+.card.resumo {
+    background-color: var(--card-background);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    padding: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card.resumo h3 {
+    margin-bottom: 15px;
+    color: var(--text-color);
+    font-size: 1.2rem;
+}
+
+.metricas {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.metrica {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.metrica i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.metrica span {
+    color: var(--text-secondary);
+}
+
+.metrica strong {
+    margin-left: auto;
+    color: var(--text-color);
+    font-size: 1.1rem;
+}
+
+/* Monitoramento de Saúde */
+.monitoramento-saude {
+    margin-top: 20px;
+}
+
+.card {
+    background-color: var(--card-background);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.card-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 15px;
+}
+
+.card-header h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-body p {
+    margin-bottom: 15px;
+    color: var(--text-secondary);
+}
+
+.action-group {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.action-group button {
+    flex: 1;
+    justify-content: center;
+}
+
+.action-group button i {
+    font-size: 1.1rem;
+}
+
+/* Ajuste para o botão de editar dados */
+.edit-button {
+    background: #4a90e2;
+    color: white;
+}
+
+.edit-button:hover {
+    background: #357abd;
+}
+
+/* Ajuste para o botão de metas */
+.metas-button {
+    background: #4a90e2;
+    color: white;
+}
+
+.metas-button:hover {
+    background: #357abd;
+}
+
+/* Modal */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 15px;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.3rem;
+}
+
+.modal-body {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.registros-lista {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.registros-lista li {
+    padding: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.registros-lista li:last-child {
+    border-bottom: none;
+}
+
+.data-header {
+    font-weight: bold;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .metricas {
+        flex-direction: column;
+    }
+    
+    .action-group {
+        flex-direction: column;
+    }
+    
+    .btn-primary, .btn-secondary {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Gamificação */
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: var(--card-bg);
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: white;
+}
+
+.user-info {
+    flex: 1;
+}
+
+.user-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.xp-container {
+    width: 100%;
+    max-width: 300px;
+}
+
+.xp-bar {
+    height: 8px;
+    background: var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.xp-progress {
+    height: 100%;
+    background: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.xp-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.level-badge {
+    
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-weight: bold;
+    transition: transform 0.3s ease;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.50rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    box-shadow: 0 2px 5px var(--shadow-color);
+}
+
+.level-badge.level-up {
+    animation: levelUp 1s ease;
+}
+
+.goals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.goal-card {
+    background: var(--card-bg);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.goal-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.goal-progress {
+    height: 8px;
+    background: var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.progress-bar {
+    height: 100%;
+    background: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.goal-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.achievement-card {
+    background: var(--card-bg);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+.achievement-card.unlocked {
+    opacity: 1;
+    border: 2px solid var(--primary-color);
+}
+
+.achievement-icon {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.achievement-title {
+    font-size: 1.125rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.achievement-description {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+/* Notificações */
+.notification {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: var(--primary-color);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: translateY(100%);
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.notification.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.notification-message {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .xp-container {
+        margin: 1rem auto;
+    }
+
+    .goals-grid,
+    .achievements-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.metas-form {
+    background-color: var(--card-background);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+    box-shadow: 0 2px 8px var(--shadow-color);
+}
+
+.meta-item {
+    margin-bottom: 1.2rem;
+}
+
+.meta-item label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.meta-item input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: var(--input-background);
+    color: var(--text-color);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.meta-item input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.metas-form button {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 1rem;
+}
+
+.metas-form button:hover {
+    background-color: var(--primary-color-dark);
+}
+
+/* Animações de nível */
+@keyframes levelUp {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.5);
+        background-color: #FFD700;
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+header {
+    background: #fff;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    margin-top: 3rem;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+}
+
+.nav-right {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-link {
+    color: #666;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #4a90e2;
+}
+
+.nav-link i {
+    font-size: 1.1rem;
+}
+
+/* Estilos para o botão de perfil */
+.perfil-button {
+    background: #4a90e2;
+    color: white;
+    width: 100%;
+}
+
+.perfil-button:hover {
+    background: #357abd;
+}
+
+/* Estilos para o container de informações do perfil */
+.perfil-info-container {
+    background: white;
+    padding: 1rem;
+    border-radius: 5px;
+    margin: 1rem 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.perfil-info-container p {
+    margin: 0.5rem 0;
+    color: #333;
+    font-size: 1rem;
+}
+
+.perfil-info-container span {
+    font-weight: 500;
+    color: #4a90e2;
+}
+
+/* Botões de acessibilidade */
+.accessibility-buttons {
+    display: flex;
+    gap: 0.5rem;
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+}
+
+#toggle-tema,
+#increase-font,
+#decrease-font {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #4a90e2;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+#toggle-tema:hover,
+#increase-font:hover,
+#decrease-font:hover {
+    background-color: #357abd;
+}
